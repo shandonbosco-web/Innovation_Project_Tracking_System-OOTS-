@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Innovation Project Tracking System</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark">IP</div>
+      <div><strong>Innovation Tracker</strong><span>Project Management Portal</span></div>
+    </div>
+    <div class="top-right"><span class="live-dot"></span> Prototype Dashboard</div>
+  </header>
+
+  <main class="container">
+    <section class="welcome">
+      <div>
+        <p class="eyebrow">WORKSPACE / OVERVIEW</p>
+        <h1>Track ideas. <span>Build impact.</span></h1>
+        <p class="subheading">A simple space to organize innovation projects, monitor progress and manage teams.</p>
+      </div>
+      <button class="primary-btn" id="openFormBtn">＋ Add New Project</button>
+    </section>
+
+    <section class="stats-grid">
+      <article class="stat-card"><div class="stat-label">Total Projects</div><div class="stat-value" id="totalCount">0</div><div class="stat-note">Projects in workspace</div></article>
+      <article class="stat-card"><div class="stat-label">In Progress</div><div class="stat-value" id="activeCount">0</div><div class="stat-note">Currently being developed</div></article>
+      <article class="stat-card"><div class="stat-label">Completed</div><div class="stat-value" id="completedCount">0</div><div class="stat-note">Successfully completed</div></article>
+      <article class="stat-card"><div class="stat-label">Average Progress</div><div class="stat-value" id="averageProgress">0%</div><div class="stat-note">Across all projects</div></article>
+    </section>
+
+    <section class="workspace">
+      <div class="section-heading">
+        <div><p class="eyebrow">PROJECT DIRECTORY</p><h2>All Projects</h2></div>
+        <div class="filters">
+          <input id="searchInput" type="search" placeholder="Search projects..." aria-label="Search projects" />
+          <select id="statusFilter" aria-label="Filter by status">
+            <option value="All">All statuses</option><option>Planning</option><option>In Progress</option><option>On Hold</option><option>Completed</option>
+          </select>
+        </div>
+      </div>
+      <div id="projectList" class="project-list"></div>
+      <p class="footnote">Demo data is stored in this browser using local storage. It stays on this device/browser.</p>
+    </section>
+  </main>
+
+  <dialog id="projectDialog">
+    <form id="projectForm" method="dialog">
+      <div class="dialog-heading"><div><p class="eyebrow">PROJECT DETAILS</p><h2 id="dialogTitle">Add a project</h2></div><button type="button" class="icon-btn" id="closeDialog" aria-label="Close">✕</button></div>
+      <input type="hidden" id="projectId" />
+      <label>Project name<input id="projectName" required maxlength="70" placeholder="e.g. Smart Campus Solution" /></label>
+      <label>Description<textarea id="projectDescription" rows="3" maxlength="240" placeholder="What is this project about?"></textarea></label>
+      <div class="two-col">
+        <label>Team / owner<input id="projectTeam" required placeholder="e.g. Team Alpha" /></label>
+        <label>Target date<input id="projectDate" type="date" /></label>
+      </div>
+      <div class="two-col">
+        <label>Status<select id="projectStatus"><option>Planning</option><option>In Progress</option><option>On Hold</option><option>Completed</option></select></label>
+        <label>Progress (%)<input id="projectProgress" type="number" min="0" max="100" value="0" /></label>
+      </div>
+      <div class="dialog-actions"><button type="button" class="secondary-btn" id="cancelBtn">Cancel</button><button class="primary-btn" type="submit">Save Project</button></div>
+    </form>
+  </dialog>
+  <div id="toast" class="toast" role="status"></div>
+  <script src="script.js"></script>
+</body>
+</html>
